@@ -89,7 +89,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#0B1F39] py-4 flex items-center justify-center border-t border-gray-800">
+      <div className="bg-[#0b2339] py-4 flex items-center justify-center border-t border-gray-800">
         <p className="text-center text-gray-300">
           &copy; {currentYear} BookNest. All rights reserved.
         </p>
