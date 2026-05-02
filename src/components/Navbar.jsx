@@ -36,7 +36,7 @@ const Navbar = () => {
 
         <Image src={"/navbar-logo.png"} alt="logo" width={50} height={50} />
 
-        <a className="btn btn-ghost text-3xl">BookNest</a>
+        <Link href={"/"}  className="text-3xl font-bold">BookNest</Link>
       </div>
 
       {/* CENTER (NOW PERFECT CENTER) */}

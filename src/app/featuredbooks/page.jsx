@@ -41,7 +41,7 @@ const FeaturedBooks = async () => {
               {book.available_quantity} Copies Available
             </p>
             <Link
-              href={`/booksid/${book.id}`}
+              href={`/books/${book.id}`}
               className="px-6 py-4 border-2 border-blue-500 text-blue-500 rounded-full hover:bg-blue-500 hover:text-white transition duration-300 shadow-sm hover:shadow-md"
             >
               View Details
