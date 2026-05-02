@@ -38,6 +38,7 @@ const BooksDetailsPage = async ({ params }) => {
         <div>
             <h1 className="text-lg font-bold mt-6">{book.title}</h1>
             <p className="text-4xl text-gray-600 mt-3">{book.author}</p>
+            <p>Description:</p>
             <p className="text-lg text-gray-700 mt-6">{book.description}</p>
             <p className="text-sm text-green-600 mt-6 mb-6">Available Quantity: {book.available_quantity}</p>
         </div>
