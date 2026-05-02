@@ -29,8 +29,8 @@ const BooksDetailsPage = async ({ params }) => {
             <Image
               src={book.image_url}
               alt={book.title}
-                width={200}
-                height={200}
+                width={300}
+                height={300}
               className="w-full h-auto object-cover transition duration-300 group-hover:scale-110"
             />
         </div>
@@ -42,6 +42,16 @@ const BooksDetailsPage = async ({ params }) => {
             <p className="text-xl text-gray-700 mt-2">{book.description}</p>
             <p className="text-sm text-green-600 mt-6 mb-6">Available Quantity: {book.available_quantity}</p>
         </div>
+      </div>
+      <div>
+        <h1 className="text-2xl font-bold">Book Information</h1>
+        <h2>Author: {book.author}</h2>
+        <h2>Publisher: {book.publisher}</h2>
+        <h2>Year: {book.year}</h2>
+        <h2>ISBN: {book.isbn}</h2>
+        <h2>Genre: {book.genre}</h2>
+        <h2>Available Quantity: {book.available_quantity}</h2>
+        
       </div>
     </div>
   );
