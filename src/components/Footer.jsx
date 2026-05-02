@@ -21,13 +21,13 @@ const Footer = () => {
                 height={50}
               />
 
-              <Link href={"/"} className="text-3xl font-bold">
+              <Link href={"/"} className="text-3xl text-gray-300 font-bold">
                 BookNest
               </Link>
             </div>
-            <div className="mt-6 text-gray-300">
-              <p className="text-gray-500">Your digital library companion.</p>
-              <p className="text-gray-500">Find, Borrow, Read, Repeat</p>
+            <div className="mt-6">
+              <p className="text-gray-300">Your digital library companion.</p>
+              <p className="text-gray-300">Find, Borrow, Read, Repeat</p>
             </div>
             <div className="flex gap-6 mt-6">
               <Link href="https://www.facebook.com">
@@ -40,15 +40,15 @@ const Footer = () => {
                 <FaInstagram />
               </Link>
               <Link href="https://www.linkedin.com">
-                <FaLinkedin />
+                <FaLinkedin className=" bg-white" />
               </Link>
             </div>
           </div>
 
           {/* second section */}
           <div>
-            <h1 className="text-2xl font-bold mb-6">Quick Links</h1>
-            <div className="flex flex-col gap-2 mt-4">
+            <h1 className="text-2xl font-bold text-gray-300 mb-6">Quick Links</h1>
+            <div className="flex flex-col text-gray-300 gap-2 mt-4">
               <Link href={"/"}>Home</Link>
               <Link href={"/allbooks"}>All Books</Link>
               <Link href={"/myprofile"}>My Profile</Link>
@@ -57,8 +57,8 @@ const Footer = () => {
 
           {/* third section */}
           <div>
-            <h1 className="text-2xl font-bold mb-6">Categories</h1>
-            <div className="flex flex-col gap-2 mt-4">
+            <h1 className="text-2xl font-bold text-gray-300 mb-6">Categories</h1>
+            <div className="flex flex-col gap-2 mt-4 text-gray-300">
               <Link href={`/allbooks?category=Story`}>Story</Link>
               <Link href={`/allbooks?category=Tech`}>Tech</Link>
               <Link href={`/allbooks?category=Science`}>Science</Link>
@@ -67,7 +67,7 @@ const Footer = () => {
 
           {/* fourth section */}
           <div>
-            <h1 className="text-2xl font-bold mb-6">Contact Us</h1>
+            <h1 className="text-2xl text-gray-300 font-bold mb-6">Contact Us</h1>
             <div className="flex flex-col gap-2 mt-4">
               <Link
                 href={`mailto:mdalamm5090@gmail.com`}
