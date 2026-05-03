@@ -12,10 +12,36 @@ import {
   TextField,
 } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 export default function LogOutPage() {
-
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [loadingGithub, setLoadingGithub] = useState(false);
+
+  // Google Login Handlers
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+
+    console.log(data, "google login data");
+
+    //setLoading(true);
+  };
+
+
+  // GitHub Login Handlers
+  const handleGithubLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "github",
+    });
+
+    console.log(data, "github login data");
+  };
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -26,15 +52,15 @@ export default function LogOutPage() {
     const password = e.target.password.value;
 
     //console.log({ name, image, email, password });
-    const {data, error} = await authClient.signUp.email({
+    const { data, error } = await authClient.signUp.email({
       name,
       image,
       email,
       password,
-    })
+    });
     console.log(data, error, "signup data", "signup error");
 
-    if(data) {
+    if (data) {
       alert("You have successfully signed up! Please log in to continue.");
       router.push("/login");
     }
@@ -43,6 +69,50 @@ export default function LogOutPage() {
   return (
     <Card className="border mx-auto w-125 py-10 mt-5">
       <h1 className="text-center text-2xl font-bold">Log Out</h1>
+
+      {/* Google Login Button */}
+      <div>
+        <button
+          onClick={handleGoogleLogin}
+          disabled={loading}
+          className="flex items-center justify-center gap-3 w-full py-3 rounded-xl 
+      bg-white text-black font-medium shadow-md hover:shadow-lg transition 
+      disabled:opacity-70"
+        >
+          {loading ? (
+            <span className="animate-spin w-5 h-5 border-2 border-black border-t-transparent rounded-full"></span>
+          ) : (
+            <>
+              <div className="flex items-center border-2 border-gray-200 rounded-full gap-3">
+                <FcGoogle size={22} />
+              <span>Continue with Google</span>
+              </div>
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* 🐙 GitHub Button */}
+      <div className="px-6 mb-6">
+        <button
+          onClick={handleGithubLogin}
+          disabled={loadingGithub}
+          className="flex items-center justify-center gap-3 w-full py-3 rounded-xl 
+          bg-[#111] text-white font-medium shadow-md hover:shadow-lg transition 
+          disabled:opacity-70"
+        >
+          {loadingGithub ? (
+            <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
+          ) : (
+            <>
+              <div className="flex items-center border-2 border-gray-200 rounded-full gap-3">
+                <FaGithub size={22} />
+              <span>Continue with GitHub</span>
+              </div>
+            </>
+          )}
+        </button>
+      </div>
 
       <Form className="flex w-96 mx-auto flex-col gap-6" onSubmit={onSubmit}>
         <TextField isRequired name="name" type="text">
