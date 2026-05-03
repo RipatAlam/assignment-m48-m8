@@ -22,7 +22,7 @@ const BreakingNewsPage = () => {
       <Marquee pauseOnHover={true} speed={50}>
         {
           data.map((book) => (
-            <h1 key={book.id} className="mr-4 text-gray-200">
+            <h1 key={book.id} className="mr-4 text-gray-500">
               {book.title}
             </h1>
           ))
