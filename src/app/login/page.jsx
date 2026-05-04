@@ -1,93 +1,104 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { Check } from "@gravity-ui/icons";
-import {
-  Button,
-  Card,
-  Description,
-  FieldError,
-  Form,
-  Input,
-  Label,
-  TextField,
-} from "@heroui/react";
+import Link from "next/link";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-export default function LogInPage() {
-  const onSubmit = async (e) => {
-    e.preventDefault();
+const Loginpage = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
-    //console.log({ name, image, email, password });
-    const { data, error } = await authClient.signIn.email({
-      email,
-      password,
+  const handleLoginFunc = async (data) => {
+    //console.log(data);
+
+    //Authentication
+    const { data: res, error } = await authClient.signIn.email({
+      email: data.email, // required
+      password: data.password, // required
       rememberMe: true,
       callbackURL: "/",
     });
-    console.log(data, error, "signup data", "signup error");
+
+    console.log(res, error);
+    if (error) {
+      alert(error.message);
+    }
+    if (res) {
+      alert("Login Successfull");
+    }
   };
 
+  {
+    /* const handleLoginFunc = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+  };*/
+  }
+
   return (
-    <Card className="border mx-auto w-125 py-10 mt-5">
-      <h1 className="text-center text-2xl font-bold">Log In</h1>
-
-      <Form className="flex w-96 mx-auto flex-col gap-6" onSubmit={onSubmit}>
-        <TextField
-          isRequired
-          name="email"
-          type="email"
-          validate={(value) => {
-            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-              return "Please enter a valid email address";
-            }
-
-            return null;
-          }}
+    <div className="container mx-auto min-h-[80vh] flex justify-center items-center bg-slate-100">
+      <div className="p-4 rounded-xl bg-white">
+        <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
+        <form
+          className="space-y-4"
+          onSubmit={handleSubmit(
+            handleLoginFunc,
+          )} /*onSubmit={handleLoginFunc}*/
         >
-          <Label>Email</Label>
-          <Input placeholder="john@example.com" />
-          <FieldError />
-        </TextField>
-
-        <TextField
-          isRequired
-          minLength={8}
-          name="password"
-          type="password"
-          validate={(value) => {
-            if (value.length < 8) {
-              return "Password must be at least 8 characters";
-            }
-            if (!/[A-Z]/.test(value)) {
-              return "Password must contain at least one uppercase letter";
-            }
-            if (!/[0-9]/.test(value)) {
-              return "Password must contain at least one number";
-            }
-
-            return null;
-          }}
-        >
-          <Label>Password</Label>
-          <Input placeholder="Enter your password" />
-          <Description>
-            Must be at least 8 characters with 1 uppercase and 1 number
-          </Description>
-          <FieldError />
-        </TextField>
-
-        <div className="flex gap-2">
-          <Button type="submit">
-            <Check />
-            Submit
-          </Button>
-          <Button type="reset" variant="secondary">
-            Reset
-          </Button>
-        </div>
-      </Form>
-    </Card>
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend">Email</legend>
+            <input
+              type="text"
+              className="input"
+              /*name="email"*/
+              {...register("email", { required: "Email field is required" })}
+              placeholder="Enter Your Email"
+            />
+            {errors.email && (
+              <span className="text-red-500">{errors.email.message}</span>
+            )}
+          </fieldset>
+          <fieldset className="fieldset relative">
+            <legend className="fieldset-legend">Password</legend>
+            <input
+              type={isShowPassword ? "text" : "password"}
+              className="input"
+              /*name="password"*/
+              {...register("password", {
+                required: "Password field is required",
+              })}
+              placeholder="Enter Your Password"
+            />
+            <span
+              className="absolute right-2 top-4 cursor-pointer"
+              onClick={() => setIsShowPassword(!isShowPassword)}
+            >
+              {isShowPassword ? <FaEye /> : <FaEyeSlash />}
+            </span>
+            {errors.password && (
+              <span className="text-red-500">{errors.password.message}</span>
+            )}
+          </fieldset>
+          <button className="btn w-full bg-slate-800 text-white">Login</button>
+        </form>
+        <p className="mt-4">
+          Do not have an account?{" "}
+          <Link href={"/register"} className="text-blue-500">
+            Register Here
+          </Link>
+        </p>
+      </div>
+    </div>
   );
-}
+};
+
+export default Loginpage;

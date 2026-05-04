@@ -5,7 +5,7 @@ import React from "react";
 const FeaturedBooks = async () => {
   const res = await fetch("https://assignment-m48-m8-snwu.vercel.app/data.json");
   const data = await res.json();
-  console.log(data, "featured books data");
+  //console.log(data, "featured books data");
 
   return (
     <div className="container mx-auto px-4 py-8">

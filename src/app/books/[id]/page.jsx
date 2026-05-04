@@ -5,16 +5,16 @@ import React from "react";
 const BooksDetailsPage = async ({ params }) => {
   //console.log(params, "params from book details page");
   const { id } = await params;
-  console.log(id, "book id from params");
+  //console.log(id, "book id from params");
 
   const res = await fetch(
     "https://assignment-m48-m8-snwu.vercel.app/data.json",
   );
   const data = await res.json();
-  console.log(data, "books data from details page");
+  //console.log(data, "books data from details page");
 
   const book = data.find((book) => book.id === parseInt(id));
-  console.log(book, "book details");
+  //console.log(book, "book details");
 
   return (
     <div className="container mx-auto px-4 py-8">

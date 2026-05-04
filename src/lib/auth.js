@@ -1,11 +1,12 @@
-import dns from "node:dns";
+import dns from "dom:dns";
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
-const client = new MongoClient(process.env.ASSIGNMENT_M48_M8_DB_URL);
+
+const client = new MongoClient(process.env.MONGO_URI);
 const db = client.db();
 
 export const auth = betterAuth({
@@ -13,17 +14,18 @@ export const auth = betterAuth({
     // Optional: if you don't provide a client, database transactions won't be enabled.
     client
   }),
-   emailAndPassword: { 
+
+    emailAndPassword: { 
     enabled: true, 
   },
-  
-   socialProviders: {
+
+    socialProviders: {
         google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID, 
+            clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        },
-        github: { 
-            clientId: process.env.GITHUB_CLIENT_ID, 
+        }, 
+         github: { 
+            clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET, 
         }, 
     },
