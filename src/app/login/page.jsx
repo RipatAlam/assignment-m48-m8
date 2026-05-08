@@ -92,7 +92,7 @@ const Loginpage = () => {
         </form>
         <p className="mt-4">
           Do not have an account?{" "}
-          <Link href={"/register"} className="text-blue-500">
+          <Link href={"/logout"} className="text-blue-500">
             Register Here
           </Link>
         </p>

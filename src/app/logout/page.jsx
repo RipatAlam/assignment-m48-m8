@@ -51,7 +51,7 @@ const LogOutpage = () => {
     <div className="container mx-auto min-h-[80vh] flex justify-center items-center bg-slate-100">
       <div className="p-4 rounded-xl bg-white">
         <h1 className="text-3xl font-bold text-center mb-6">
-          Login Your Account
+          Create Your Account
         </h1>
         <form
           className="space-y-4"
@@ -123,7 +123,7 @@ const LogOutpage = () => {
             )}
           </fieldset>
           <button className="btn w-full bg-slate-800 text-white">
-            Log Out
+            Register
           </button>
         </form>
       </div>
